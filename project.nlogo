@@ -1,5 +1,14 @@
+turtles-own[
+  people
+  subway
+  company
+  school
+  apartment
+  store
+]
+
 globals[
-  lanes
+
 ]
 
 to setup
@@ -10,54 +19,45 @@ to setup
     set shape "person"
     set color black
   ]
-  draw-road
+  draw-map
+  setup-station
+  setup-company
   reset-ticks
 end
 
-to draw-road
+to go
+  ask turtles
+  [
+
+  ]
+end
+
+
+
+to draw-map
   ask patches [
     ; the road is surrounded by green grass of varying shades
     set pcolor green - random-float 0.5
   ]
-  set lanes n-values 2 [ [n] ->
-    2 - (n * 2) - 1
-  ]
-  ask patches with [ abs pycor <= 2 ] [
-    ; the road itself is varying shades of grey
-    set pcolor grey - 2.5 + random-float 0.25
-  ]
-  draw-road-lines-y
 end
 
-to draw-road-lines-y
-  let y (last lanes) - 1 ; start below the "lowest" lane
-  while [ y <= first lanes + 1 ] [
-    if not member? y lanes [
-      ; draw lines on road patches that are not part of a lane
-      ifelse abs y = 2
-        [ draw-line-y y yellow 0 ]  ; yellow for the sides of the road
-        [ draw-line-y y white 0.5 ] ; dashed white between lanes
-    ]
-    set y y + 1 ; move up one patch
+to setup-station
+  create-turtles 1
+  [
+    setxy -23 0
+    set shape "square"
+    set color black - 3
+    set size 3
   ]
 end
 
-to draw-line-y [ y line-color gap ]
-  ; We use a temporary turtle to draw the line:
-  ; - with a gap of zero, we get a continuous line;
-  ; - with a gap greater than zero, we get a dasshed line.
-  create-turtles 1 [
-    setxy (min-pxcor - 0.5) y
-    hide-turtle
-    set color line-color
-    set heading 90
-    repeat world-width [
-      pen-up
-      forward gap
-      pen-down
-      forward (1 - gap)
-    ]
-    die
+to setup-company
+  create-turtles 1
+  [
+    setxy random-xcor random-ycor
+    set shape "square"
+    set color red - 5
+    set size 3
   ]
 end
 @#$#@#$#@
@@ -89,10 +89,10 @@ ticks
 30.0
 
 BUTTON
-58
-69
-125
-102
+103
+327
+178
+360
 setup
 setup
 NIL

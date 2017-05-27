@@ -1,5 +1,14 @@
+turtles-own[
+  people
+  subway
+  company
+  school
+  apartment
+  store
+]
+
 globals[
-  lanes
+
 ]
 
 to setup
@@ -10,8 +19,43 @@ to setup
     set shape "person"
     set color black
   ]
-  draw-road
+  draw-map
+  setup-station
+  setup-company
   reset-ticks
+end
+
+to go
+  ask turtles
+end
+
+
+
+to draw-map
+  ask patches [
+    ; the road is surrounded by green grass of varying shades
+    set pcolor green - random-float 0.5
+  ]
+end
+
+to setup-station
+  create-turtles 1
+  [
+    setxy -23 0
+    set shape "square"
+    set color black - 3
+    set size 3
+  ]
+end
+
+to setup-company
+  create-turtles 1
+  [
+    setxy random-xcor random-ycor
+    set shape "square"
+    set color red - 5
+    set size 3
+  ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -42,10 +86,10 @@ ticks
 30.0
 
 BUTTON
-58
-69
-125
-102
+103
+327
+178
+360
 setup
 setup
 NIL
