@@ -5,7 +5,7 @@ breed [ schools school ]
 to setup
   clear-all
   setup-station 3 3
-   setup-company
+  setup-company
   setup-people
   draw-map
   reset-ticks
@@ -13,13 +13,15 @@ end
 
 to go
   ask people [
-    fd 1
-
+    move
   ]
   ask companies with [ people = 100 ]
   [
     hatch 1 [ fd 100 ]
   ]
+
+  population
+
   tick
 end
 
@@ -61,6 +63,21 @@ to setup-company
     set color gray
     set shape "company"
     ]
+  ]
+end
+
+to move
+  rt random 50
+  lt random 50
+  fd 1
+end
+
+to population
+  create-people 1
+  [
+    set color black
+    set shape "person"
+    setxy 3
   ]
 end
 @#$#@#$#@
@@ -115,7 +132,7 @@ BUTTON
 245
 go
 go
-NIL
+T
 1
 T
 OBSERVER
