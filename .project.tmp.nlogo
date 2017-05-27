@@ -1,60 +1,67 @@
-turtles-own[
-  people
-  subway
-  company
-  school
-  apartment
-  store
-]
-
-globals[
-
-]
+breed [ people person ]
+breed [ companies company ]
+breed [ schools school ]
 
 to setup
   clear-all
-  create-turtles 50
+  setup-station 3
+   setup-company
+  setup-people
+  draw-map
+  reset-ticks
+end
+
+to go
+  ask people [
+    fd 1
+
+  ]
+  ask companies with [ people = 100 ]
+  [
+    hatch 1 [ rt random-float 360 fd 100 ]
+  ]
+  tick
+end
+
+to setup-people
+  create-people 50
   [
     setxy random-xcor random-ycor
     set shape "person"
     set color black
   ]
-  draw-map
-  setup-station
-  setup-company
-  reset-ticks
+
 end
-
-to go
-  ask turtles
-end
-
-
 
 to draw-map
   ask patches [
-    ; the road is surrounded by green grass of varying shades
-    set pcolor green - random-float 0.5
+    ifelse abs pxcor <= 1 or abs pycor <= 1
+      [ set pcolor gray ]     ; the roads are gray
+      [ set pcolor green - random-float 0.5 ] ; and the grass is green
   ]
 end
 
-to setup-station
-  create-turtles 1
+to setup-station [ x y ]
+  ask patches with [pxcor = x and pycor = y]
   [
-    setxy -23 0
-    set shape "square"
-    set color black - 3
-    set size 3
+    sprout 1
+    [
+     set color white
+     set shape "subway Station"
+     set size 3
+    ]
   ]
 end
 
 to setup-company
-  create-turtles 1
+  ask patches with [(pxcor = 10 and pycor = 10)]
   [
+    sprout 1[
+    set color blue
     setxy random-xcor random-ycor
-    set shape "square"
-    set color red - 5
     set size 3
+    set shape "square"
+    ]
   ]
 end
 @#$#@#$#@
@@ -79,17 +86,17 @@ GRAPHICS-WINDOW
 25
 -25
 25
-0
-0
+1
+1
 1
 ticks
 30.0
 
 BUTTON
-103
-327
-178
-360
+15
+213
+90
+246
 setup
 setup
 NIL
@@ -101,6 +108,34 @@ NIL
 NIL
 NIL
 1
+
+BUTTON
+110
+212
+173
+245
+go
+go
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+MONITOR
+132
+256
+189
+301
+people
+50
+17
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -363,6 +398,51 @@ false
 0
 Polygon -7500403 true true 151 1 185 108 298 108 207 175 242 282 151 216 59 282 94 175 3 108 116 108
 
+subway station
+false
+15
+Rectangle -7500403 true false 105 180 105 180
+Rectangle -7500403 true false 225 90 240 225
+Rectangle -7500403 true false 60 90 75 225
+Rectangle -6459832 true false 75 195 225 225
+Rectangle -7500403 true false 60 45 240 90
+Line -16777216 false 60 45 60 225
+Line -16777216 false 60 90 240 90
+Line -16777216 false 240 45 240 225
+Line -16777216 false 60 45 240 45
+Line -16777216 false 90 180 210 180
+Rectangle -6459832 true false 90 180 210 195
+Line -16777216 false 75 195 75 195
+Line -16777216 false 75 195 225 195
+Polygon -16777216 false false 75 195 105 165 195 165 225 195 75 195
+Rectangle -6459832 true false 105 165 195 180
+Line -16777216 false 105 180 195 180
+Line -16777216 false 90 180 90 195
+Line -16777216 false 105 165 105 180
+Line -16777216 false 195 165 195 180
+Line -16777216 false 210 180 210 195
+Line -16777216 false 90 180 210 180
+Line -16777216 false 105 165 150 165
+Line -16777216 false 150 165 195 165
+Polygon -13791810 true false 75 90 75 195 105 165 105 90 75 90
+Polygon -13791810 true false 195 165 225 195 225 90 195 90 195 165
+Polygon -6459832 true false 90 180 90 195 75 195 90 180
+Polygon -6459832 true false 90 180 105 180 105 165 90 180
+Polygon -6459832 true false 195 165 210 180 195 180 195 165 225 195 210 195 210 180
+Line -16777216 false 195 165 195 180
+Line -16777216 false 195 165 225 195
+Line -16777216 false 105 165 75 195
+Line -16777216 false 210 180 210 195
+Line -16777216 false 75 90 75 225
+Line -16777216 false 225 90 225 225
+Line -16777216 false 60 90 225 90
+Line -16777216 false 105 90 105 165
+Line -16777216 false 195 90 195 180
+Rectangle -1 true true 105 90 195 165
+Line -16777216 false 105 90 150 90
+Line -16777216 false 150 90 195 90
+Line -16777216 false 105 90 105 165
+
 target
 false
 0
@@ -371,6 +451,28 @@ Circle -16777216 true false 30 30 240
 Circle -7500403 true true 60 60 180
 Circle -16777216 true false 90 90 120
 Circle -7500403 true true 120 120 60
+
+train passenger car
+false
+0
+Polygon -7500403 true true 15 206 15 150 15 135 30 120 270 120 285 135 285 150 285 206 270 210 30 210
+Circle -16777216 true false 240 195 30
+Circle -16777216 true false 210 195 30
+Circle -16777216 true false 60 195 30
+Circle -16777216 true false 30 195 30
+Rectangle -16777216 true false 30 140 268 165
+Line -7500403 true 60 135 60 165
+Line -7500403 true 60 135 60 165
+Line -7500403 true 90 135 90 165
+Line -7500403 true 120 135 120 165
+Line -7500403 true 150 135 150 165
+Line -7500403 true 180 135 180 165
+Line -7500403 true 210 135 210 165
+Line -7500403 true 240 135 240 165
+Rectangle -16777216 true false 5 195 19 207
+Rectangle -16777216 true false 281 195 295 207
+Rectangle -13345367 true false 15 165 285 173
+Rectangle -2674135 true false 15 180 285 188
 
 tree
 false
