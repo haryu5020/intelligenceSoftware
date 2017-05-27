@@ -4,7 +4,7 @@ breed [ schools school ]
 
 to setup
   clear-all
-  setup-station 3
+  setup-station 3 3
    setup-company
   setup-people
   draw-map
@@ -18,7 +18,7 @@ to go
   ]
   ask companies with [ people = 100 ]
   [
-    hatch 1 [ rt random-float 360 fd 100 ]
+    hatch 1 [ fd 100 ]
   ]
   tick
 end
@@ -48,7 +48,7 @@ to setup-station [ x y ]
     [
      set color white
      set shape "subway Station"
-     set size 3
+     set size 5
     ]
   ]
 end
@@ -57,10 +57,9 @@ to setup-company
   ask patches with [(pxcor = 10 and pycor = 10)]
   [
     sprout 1[
-    set color blue
-    setxy random-xcor random-ycor
-    set size 3
-    set shape "square"
+    set size 5
+    set color gray
+    set shape "company"
     ]
   ]
 end
@@ -127,10 +126,10 @@ NIL
 1
 
 MONITOR
-132
-256
-189
-301
+18
+264
+75
+309
 people
 50
 17
@@ -240,6 +239,28 @@ false
 0
 Circle -7500403 true true 0 0 300
 Circle -16777216 true false 30 30 240
+
+company
+false
+0
+Rectangle -7500403 true true 75 30 225 270
+Rectangle -16777216 true false 135 225 165 270
+Rectangle -16777216 true false 90 180 120 210
+Rectangle -16777216 true false 135 180 165 210
+Rectangle -16777216 true false 180 180 210 210
+Rectangle -16777216 true false 90 135 120 165
+Rectangle -16777216 true false 135 135 165 165
+Rectangle -16777216 true false 180 135 210 165
+Rectangle -16777216 true false 90 90 120 120
+Rectangle -16777216 true false 135 90 165 120
+Rectangle -16777216 true false 180 90 210 120
+Rectangle -16777216 true false 90 45 120 75
+Rectangle -16777216 true false 135 45 165 75
+Rectangle -16777216 true false 180 45 210 75
+Line -16777216 false 75 30 75 270
+Line -16777216 false 75 30 225 30
+Line -16777216 false 225 30 225 270
+Line -16777216 false 75 270 225 270
 
 cow
 false
