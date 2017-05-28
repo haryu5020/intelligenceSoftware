@@ -1,6 +1,8 @@
 breed [ people person ]
 breed [ companies company ]
 breed [ schools school ]
+breed [ apartments house ]
+breed [ stores store ]
 
 to setup
   clear-all
@@ -12,14 +14,10 @@ to setup
 end
 
 to go
-  ask people [
-    move
-  ]
-  ask companies with [ people = 100 ]
-  [
-    hatch 1 [ fd 100 ]
-  ]
-
+  ask people [ move ]
+  build-company
+  build-apartment
+  build-school
   population
 
   tick
@@ -56,13 +54,12 @@ to setup-station [ x y ]
 end
 
 to setup-company
-  ask patches with [(pxcor = 10 and pycor = 10)]
+  create-companies 1
   [
-    sprout 1[
+    setxy 10 10
     set size 5
     set color gray
     set shape "company"
-    ]
   ]
 end
 
@@ -77,7 +74,43 @@ to population
   [
     set color black
     set shape "person"
-    setxy 3
+    setxy 3 2
+  ]
+end
+
+to build-company
+  if ((count people) mod 100) = 0 [
+    create-companies 1
+    [
+      set size 5
+      set color gray
+      set shape "company"
+      setxy random-xcor random-ycor
+    ]
+  ]
+end
+
+to build-apartment
+  if ((count people) mod 300) = 0 [
+    create-apartments 1
+    [
+      set size 5
+      set color gray
+      set shape "house colonial"
+      setxy random-xcor random-ycor
+    ]
+  ]
+end
+
+to build-school
+  if ((count people) mod 900) = 0 [
+    create-schools 1
+    [
+      set size 5
+      set color gray
+      set shape "school"
+      setxy random-xcor random-ycor
+    ]
   ]
 end
 @#$#@#$#@
@@ -148,7 +181,7 @@ MONITOR
 75
 309
 people
-50
+count people
 17
 1
 11
@@ -362,6 +395,34 @@ Rectangle -16777216 true false 120 210 180 285
 Polygon -7500403 true true 15 120 150 15 285 120
 Line -16777216 false 30 120 270 120
 
+house colonial
+false
+0
+Rectangle -7500403 true true 270 75 285 255
+Rectangle -7500403 true true 45 135 270 255
+Rectangle -16777216 true false 124 195 187 256
+Rectangle -16777216 true false 60 195 105 240
+Rectangle -16777216 true false 60 150 105 180
+Rectangle -16777216 true false 210 150 255 180
+Line -16777216 false 270 135 270 255
+Polygon -7500403 true true 30 135 285 135 240 90 75 90
+Line -16777216 false 30 135 285 135
+Line -16777216 false 255 105 285 135
+Line -7500403 true 154 195 154 255
+Rectangle -16777216 true false 210 195 255 240
+Rectangle -16777216 true false 135 150 180 180
+Line -16777216 false 75 90 240 90
+Line -16777216 false 30 135 75 90
+Line -16777216 false 45 135 45 255
+Line -16777216 false 45 255 285 255
+Line -7500403 true 285 75 285 255
+Line -7500403 true 270 75 285 75
+Line -16777216 false 240 90 285 135
+Line -16777216 false 270 75 285 75
+Line -16777216 false 285 75 285 255
+Line -16777216 false 270 75 285 75
+Line -16777216 false 270 75 270 120
+
 leaf
 false
 0
@@ -403,6 +464,31 @@ Polygon -7500403 true true 165 180 165 210 225 180 255 120 210 135
 Polygon -7500403 true true 135 105 90 60 45 45 75 105 135 135
 Polygon -7500403 true true 165 105 165 135 225 105 255 45 210 60
 Polygon -7500403 true true 135 90 120 45 150 15 180 45 165 90
+
+school
+false
+0
+Rectangle -7500403 true true 30 135 270 240
+Rectangle -7500403 true true 105 60 195 135
+Rectangle -16777216 true false 45 150 75 180
+Rectangle -16777216 true false 90 150 120 180
+Rectangle -16777216 true false 135 150 165 180
+Rectangle -16777216 true false 180 150 210 180
+Rectangle -16777216 true false 225 150 255 180
+Rectangle -16777216 true false 45 195 75 225
+Rectangle -16777216 true false 90 195 120 225
+Rectangle -16777216 true false 180 195 210 225
+Rectangle -16777216 true false 225 195 255 225
+Rectangle -16777216 true false 135 195 165 240
+Circle -16777216 true false 120 75 60
+Line -16777216 false 30 135 30 240
+Line -16777216 false 30 135 105 135
+Line -16777216 false 105 60 105 135
+Line -16777216 false 105 60 195 60
+Line -16777216 false 195 60 195 135
+Line -16777216 false 195 135 270 135
+Line -16777216 false 270 135 270 240
+Line -16777216 false 30 240 270 240
 
 sheep
 false
