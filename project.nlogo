@@ -1,11 +1,26 @@
+globals[
+  max-companies
+  max-schools
+  max-apartments
+  max-stores
+  max-people
+]
+
+
 breed [ people person ]
 breed [ companies company ]
 breed [ schools school ]
 breed [ apartments house ]
 breed [ stores store ]
 
+
 to setup
   clear-all
+  set max-people 1000
+  set max-companies 30
+  set max-apartments 34
+  set max-schools 11
+  set max-stores 30
   setup-station 3 3
   setup-company
   setup-people
@@ -18,13 +33,14 @@ to go
   build-company
   build-apartment
   build-school
+  build-store
   population
 
   tick
 end
 
 to setup-people
-  create-people 50
+  create-people 5
   [
     setxy random-xcor random-ycor
     set shape "person"
@@ -35,9 +51,7 @@ end
 
 to draw-map
   ask patches [
-    ifelse abs pxcor <= 1 or abs pycor <= 1
-      [ set pcolor gray ]     ; the roads are gray
-      [ set pcolor green - random-float 0.5 ] ; and the grass is green
+       set pcolor green - random-float 0.5  ; and the grass is green
   ]
 end
 
@@ -48,7 +62,7 @@ to setup-station [ x y ]
     [
      set color white
      set shape "subway Station"
-     set size 5
+     set size 3
     ]
   ]
 end
@@ -56,8 +70,10 @@ end
 to setup-company
   create-companies 1
   [
-    setxy 10 10
-    set size 5
+    set xcor 10
+    set ycor 10
+    setxy xcor ycor
+    set size 3
     set color gray
     set shape "company"
   ]
@@ -70,46 +86,68 @@ to move
 end
 
 to population
-  create-people 1
-  [
-    set color black
-    set shape "person"
-    setxy 3 2
+  if count people < max-people [
+    create-people 1
+    [
+      set color black
+      set shape "person"
+      setxy 3 2
+    ]
   ]
 end
 
 to build-company
-  if ((count people) mod 100) = 0 [
-    create-companies 1
-    [
-      set size 5
-      set color gray
-      set shape "company"
-      setxy random-xcor random-ycor
+  if count companies < max-companies [
+    if ((count people) mod 15) = 0 [
+      create-companies 1
+      [
+        set size 3
+        set color gray
+        set shape "company"
+        setxy random-xcor random-ycor
+      ]
     ]
   ]
 end
 
 to build-apartment
-  if ((count people) mod 300) = 0 [
-    create-apartments 1
-    [
-      set size 5
-      set color gray
-      set shape "house colonial"
-      setxy random-xcor random-ycor
+  if count apartments < max-apartments [
+    if ((count people) mod 30) = 0 [
+      create-apartments 1
+      [
+        set size 3
+        set color gray
+        set shape "house colonial"
+        setxy random-xcor random-ycor
+      ]
     ]
   ]
 end
 
 to build-school
-  if ((count people) mod 900) = 0 [
-    create-schools 1
-    [
-      set size 5
-      set color gray
-      set shape "school"
-      setxy random-xcor random-ycor
+  if count schools < max-schools [
+    if ((count people) mod 60) = 0 [
+      create-schools 1
+      [
+        set size 3
+        set color gray
+        set shape "school"
+        setxy random-xcor random-ycor
+      ]
+    ]
+  ]
+end
+
+to build-store
+  if count stores < max-stores [
+    if ((count people) mod 45 ) = 0 [
+      create-stores 1
+      [
+        set size 3
+        set color white
+        set shape "store"
+        setxy random-xcor random-ycor
+      ]
     ]
   ]
 end
@@ -182,6 +220,50 @@ MONITOR
 309
 people
 count people
+17
+1
+11
+
+MONITOR
+84
+264
+156
+309
+company
+count companies
+17
+1
+11
+
+MONITOR
+106
+319
+163
+364
+school
+count schools
+17
+1
+11
+
+MONITOR
+17
+319
+95
+364
+apartment
+count apartments
+17
+1
+11
+
+MONITOR
+20
+376
+77
+421
+store
+count stores
 17
 1
 11
@@ -521,6 +603,49 @@ star
 false
 0
 Polygon -7500403 true true 151 1 185 108 298 108 207 175 242 282 151 216 59 282 94 175 3 108 116 108
+
+store
+false
+0
+Rectangle -1 true false 60 120 225 240
+Rectangle -13791810 true false 165 165 210 240
+Rectangle -13791810 true false 75 165 135 210
+Polygon -2674135 true false 45 150 60 90 75 90 60 150 45 150
+Line -16777216 false 60 150 75 90
+Line -16777216 false 60 90 75 90
+Line -16777216 false 60 90 45 150
+Line -16777216 false 75 90 225 90
+Line -16777216 false 90 75 75 135
+Line -16777216 false 105 75 90 135
+Line -16777216 false 75 135 90 135
+Line -16777216 false 120 75 120 135
+Line -16777216 false 135 75 135 135
+Line -16777216 false 120 135 135 135
+Line -16777216 false 150 75 150 135
+Line -16777216 false 165 75 165 135
+Line -16777216 false 150 135 165 135
+Line -16777216 false 180 75 195 135
+Line -16777216 false 195 75 210 135
+Line -16777216 false 195 135 210 135
+Line -16777216 false 210 75 225 135
+Line -16777216 false 225 90 240 150
+Line -16777216 false 225 150 240 150
+Rectangle -6459832 true false 45 240 240 255
+Line -6459832 false 165 165 165 240
+Polygon -6459832 false false 165 165 210 165 210 240 165 240
+Polygon -6459832 false false 75 165 75 165 135 165 135 210 75 210 75 165
+Rectangle -2674135 true false 60 75 225 90
+Polygon -1 true false 60 150 75 90 90 90 75 150 60 150
+Polygon -2674135 true false 90 90 75 150 90 150 105 90 90 90
+Polygon -1 true false 105 90 120 90 120 150 90 150 105 90
+Polygon -2674135 true false 120 90 120 150 135 150 135 90 120 90
+Polygon -1 true false 135 90 150 90 150 150 135 150 135 90
+Polygon -1 true false 165 90 165 150 195 150 195 150 180 90 165 90
+Polygon -1 true false 195 90 210 150 225 150 210 90 195 90
+Polygon -2674135 true false 150 90 150 150 165 150 165 90 150 90
+Polygon -2674135 true false 180 90 195 150 210 150 195 90 180 90
+Polygon -2674135 true false 210 90 225 150 240 150 225 90 210 90
+Line -7500403 true 60 90 225 90
 
 subway station
 false
