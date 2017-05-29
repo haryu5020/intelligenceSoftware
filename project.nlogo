@@ -257,7 +257,7 @@ max-people
 max-people
 1000
 5000
-2990.0
+1000.0
 1
 1
 NIL
@@ -317,7 +317,7 @@ mod-people-for-store
 mod-people-for-store
 0
 100
-5.0
+35.0
 1
 1
 NIL
