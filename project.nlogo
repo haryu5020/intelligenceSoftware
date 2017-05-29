@@ -1,11 +1,3 @@
-globals[
-  max-companies
-  max-schools
-  max-apartments
-  max-stores
-  max-people
-]
-
 
 breed [ people person ]
 breed [ companies company ]
@@ -16,11 +8,6 @@ breed [ stores store ]
 
 to setup
   clear-all
-  set max-people 1000
-  set max-companies 30
-  set max-apartments 34
-  set max-schools 11
-  set max-stores 30
   setup-station 3 3
   setup-company
   setup-people
@@ -97,8 +84,7 @@ to population
 end
 
 to build-company
-  if count companies < max-companies [
-    if ((count people) mod 15) = 0 [
+    if ((count people) mod mod-people-for-company) = 0 [
       create-companies 1
       [
         set size 3
@@ -107,12 +93,10 @@ to build-company
         setxy random-xcor random-ycor
       ]
     ]
-  ]
 end
 
 to build-apartment
-  if count apartments < max-apartments [
-    if ((count people) mod 30) = 0 [
+    if ((count people) mod mod-people-for-apartment) = 0 [
       create-apartments 1
       [
         set size 3
@@ -121,12 +105,10 @@ to build-apartment
         setxy random-xcor random-ycor
       ]
     ]
-  ]
 end
 
 to build-school
-  if count schools < max-schools [
-    if ((count people) mod 60) = 0 [
+    if ((count people) mod mod-people-for-school) = 0 [
       create-schools 1
       [
         set size 3
@@ -135,12 +117,11 @@ to build-school
         setxy random-xcor random-ycor
       ]
     ]
-  ]
+
 end
 
 to build-store
-  if count stores < max-stores [
-    if ((count people) mod 45 ) = 0 [
+    if ((count people) mod mod-people-for-store ) = 0 [
       create-stores 1
       [
         set size 3
@@ -149,13 +130,12 @@ to build-store
         setxy random-xcor random-ycor
       ]
     ]
-  ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
+264
 10
-881
+935
 682
 -1
 -1
@@ -180,10 +160,10 @@ ticks
 30.0
 
 BUTTON
-15
-213
-90
-246
+175
+369
+250
+402
 setup
 setup
 NIL
@@ -197,10 +177,10 @@ NIL
 1
 
 BUTTON
-110
-212
-173
-245
+187
+413
+250
+446
 go
 go
 T
@@ -214,10 +194,10 @@ NIL
 1
 
 MONITOR
-18
-264
-75
-309
+24
+370
+81
+415
 people
 count people
 17
@@ -225,10 +205,10 @@ count people
 11
 
 MONITOR
-84
-264
-156
-309
+90
+370
+162
+415
 company
 count companies
 17
@@ -236,10 +216,10 @@ count companies
 11
 
 MONITOR
-106
-319
-163
-364
+112
+425
+169
+470
 school
 count schools
 17
@@ -247,10 +227,10 @@ count schools
 11
 
 MONITOR
-17
-319
-95
-364
+23
+425
+101
+470
 apartment
 count apartments
 17
@@ -258,15 +238,90 @@ count apartments
 11
 
 MONITOR
-20
-376
-77
-421
+26
+482
+83
+527
 store
 count stores
 17
 1
 11
+
+SLIDER
+11
+188
+228
+221
+max-people
+max-people
+1000
+5000
+1000.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+10
+222
+228
+255
+mod-people-for-company
+mod-people-for-company
+1
+100
+15.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+10
+290
+228
+323
+mod-people-for-school
+mod-people-for-school
+0
+100
+60.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+8
+256
+228
+289
+mod-people-for-apartment
+mod-people-for-apartment
+0
+100
+30.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+12
+325
+228
+358
+mod-people-for-store
+mod-people-for-store
+0
+100
+100.0
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -795,7 +850,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0
+NetLogo 6.0.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
