@@ -133,9 +133,9 @@ to build-store
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-357
+264
 10
-1028
+935
 682
 -1
 -1
@@ -160,10 +160,10 @@ ticks
 30.0
 
 BUTTON
-163
-242
-238
-275
+175
+369
+250
+402
 setup
 setup
 NIL
@@ -177,10 +177,10 @@ NIL
 1
 
 BUTTON
-175
-286
-238
-319
+187
+413
+250
+446
 go
 go
 T
@@ -194,10 +194,10 @@ NIL
 1
 
 MONITOR
-12
-243
-69
-288
+24
+370
+81
+415
 people
 count people
 17
@@ -205,10 +205,10 @@ count people
 11
 
 MONITOR
-78
-243
-150
-288
+90
+370
+162
+415
 company
 count companies
 17
@@ -216,10 +216,10 @@ count companies
 11
 
 MONITOR
-100
-298
-157
-343
+112
+425
+169
+470
 school
 count schools
 17
@@ -227,10 +227,10 @@ count schools
 11
 
 MONITOR
-11
-298
-89
-343
+23
+425
+101
+470
 apartment
 count apartments
 17
@@ -238,10 +238,10 @@ count apartments
 11
 
 MONITOR
-14
-355
-71
-400
+26
+482
+83
+527
 store
 count stores
 17
@@ -249,10 +249,10 @@ count stores
 11
 
 SLIDER
--1
-61
-216
-94
+10
+188
+227
+221
 max-people
 max-people
 1000
@@ -264,10 +264,10 @@ NIL
 HORIZONTAL
 
 SLIDER
--2
-95
-216
-128
+10
+222
+228
+255
 mod-people-for-company
 mod-people-for-company
 1
@@ -279,10 +279,10 @@ NIL
 HORIZONTAL
 
 SLIDER
--2
-163
-216
-196
+11
+290
+229
+323
 mod-people-for-school
 mod-people-for-school
 0
@@ -294,10 +294,10 @@ NIL
 HORIZONTAL
 
 SLIDER
--4
-129
-216
-162
+11
+256
+229
+289
 mod-people-for-apartment
 mod-people-for-apartment
 0
@@ -309,10 +309,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-0
-198
-216
-231
+11
+325
+229
+358
 mod-people-for-store
 mod-people-for-store
 0

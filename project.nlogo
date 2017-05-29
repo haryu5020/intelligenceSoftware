@@ -249,9 +249,9 @@ count stores
 11
 
 SLIDER
-11
+10
 188
-228
+227
 221
 max-people
 max-people
@@ -294,7 +294,7 @@ NIL
 HORIZONTAL
 
 SLIDER
-8
+10
 256
 228
 289
