@@ -394,6 +394,8 @@ Rectangle -16777216 true false 210 105 240 120
 Rectangle -16777216 true false 210 135 240 150
 Rectangle -16777216 true false 210 165 240 180
 Rectangle -16777216 true false 225 195 240 210
+Polygon -16777216 false false 60 270 60 90 165 90 165 270 60 270
+Polygon -16777216 false false 150 30 150 60 210 60 210 240 255 240 255 30 150 30
 
 arrow
 true
