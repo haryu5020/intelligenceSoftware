@@ -99,9 +99,9 @@ to build-apartment
     if ((count people) mod mod-people-for-apartment) = 0 [
       create-apartments 1
       [
-        set size 3
+        set size 5
         set color gray
-        set shape "house colonial"
+        set shape "apartment"
         setxy random-xcor random-ycor
       ]
     ]
@@ -249,75 +249,75 @@ count stores
 11
 
 SLIDER
-10
+11
 188
-227
+229
 221
 max-people
 max-people
 1000
 5000
-1000.0
+2990.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-10
+11
 222
-228
+229
 255
 mod-people-for-company
 mod-people-for-company
 1
 100
-15.0
+13.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-10
+11
 290
-228
+229
 323
 mod-people-for-school
 mod-people-for-school
 0
-100
-60.0
+300
+180.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-10
+11
 256
-228
+229
 289
 mod-people-for-apartment
 mod-people-for-apartment
 0
-100
-30.0
+200
+90.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-12
+11
 325
-228
+229
 358
 mod-people-for-store
 mod-people-for-store
 0
 100
-100.0
+5.0
 1
 1
 NIL
@@ -369,6 +369,31 @@ airplane
 true
 0
 Polygon -7500403 true true 150 0 135 15 120 60 120 105 15 165 15 195 120 180 135 240 105 270 120 285 150 270 180 285 210 270 165 240 180 180 285 195 285 165 180 105 180 60 165 15
+
+apartment
+false
+0
+Rectangle -7500403 true true 150 30 255 240
+Rectangle -16777216 true false 105 60 210 255
+Rectangle -7500403 true true 60 90 165 270
+Rectangle -16777216 true false 75 105 105 120
+Rectangle -16777216 true false 75 135 105 150
+Rectangle -16777216 true false 75 165 105 180
+Rectangle -16777216 true false 120 105 150 120
+Rectangle -16777216 true false 120 135 150 150
+Rectangle -16777216 true false 120 165 150 180
+Rectangle -16777216 true false 75 195 105 210
+Rectangle -16777216 true false 120 195 150 210
+Rectangle -16777216 true false 75 225 90 240
+Rectangle -16777216 true false 135 225 150 240
+Rectangle -16777216 true false 105 225 120 270
+Rectangle -16777216 true false 165 45 195 60
+Rectangle -16777216 true false 210 45 240 60
+Rectangle -16777216 true false 210 75 240 90
+Rectangle -16777216 true false 210 105 240 120
+Rectangle -16777216 true false 210 135 240 150
+Rectangle -16777216 true false 210 165 240 180
+Rectangle -16777216 true false 225 195 240 210
 
 arrow
 true
